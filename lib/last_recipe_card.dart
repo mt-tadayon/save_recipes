@@ -8,16 +8,23 @@ class LastRecipeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.deepPurpleAccent,
+      decoration: BoxDecoration(
+        color: Colors.deepPurpleAccent,
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      ),
       height: MediaQuery.of(context).size.height / 3,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               'EGG FRY',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold),
             ),
             Row(
               children: <Widget>[
@@ -25,11 +32,12 @@ class LastRecipeCard extends StatelessWidget {
                   '10 min',
                   style: TextStyle(color: Colors.white),
                 ),
-                Divider(
-                  color: Colors.red,
-                  thickness: 10.0,
-                  height: 20.0,
-                ),
+                Container(
+                    height: 10.0,
+                    child: VerticalDivider(
+                      color: Colors.white,
+                      thickness: 2.0,
+                    )),
                 Text(
                   'Category',
                   style: TextStyle(color: Colors.white),
