@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saverecipes/category_card.dart';
 import 'package:saverecipes/last_recipe_card.dart';
 
 void main() => runApp(MyApp());
@@ -11,7 +12,6 @@ class MyApp extends StatelessWidget {
       title: 'Save Recipies',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,12 +51,33 @@ class MyApp extends StatelessWidget {
                   ),
                   GestureDetector(
                     child: Icon(Icons.search),
-                    onTap: () {print('Hello World');},
+                    onTap: () {
+                      print('Hello World');
+                    },
                   )
                 ],
               ),
-              SizedBox(height: 30.0,),
+              SizedBox(
+                height: 30.0,
+              ),
               LastRecipeCard(),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text('Quick Recipies'),
+              SizedBox(
+                height: 20.0,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: <Widget>[
+                    CategoryCard(color: Colors.amber, categoryName: 'Noodel',),
+                    SizedBox(width: 20.0,),
+                    CategoryCard(color: Colors.deepOrange, categoryName: 'Rice',)
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -63,4 +85,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
