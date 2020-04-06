@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saverecipes/last_recipe_card.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,14 +11,11 @@ class MyApp extends StatelessWidget {
       title: 'Save Recipies',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
       ),
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text(
-            'Cooking Recipie',
-            style: TextStyle(color: Colors.black),
-          ),
           actions: <Widget>[
             IconButton(
               alignment: Alignment.centerLeft,
@@ -36,7 +34,33 @@ class MyApp extends StatelessWidget {
             )
           ],
         ),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'My Recipes',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  GestureDetector(
+                    child: Icon(Icons.search),
+                    onTap: () {print('Hello World');},
+                  )
+                ],
+              ),
+              SizedBox(height: 30.0,),
+              LastRecipeCard(),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
+
