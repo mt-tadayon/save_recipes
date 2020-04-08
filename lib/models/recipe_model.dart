@@ -7,22 +7,27 @@ final String recipeName = 'name';
 final String photoUrl = 'photoUrl';
 
 class RecipeModel {
-  final int recipeId;
-  final String recipeName;
-  final String photoUrl;
+  int recipeId;
+  String recipeName;
+  String photoUrl;
 
   RecipeModel({this.recipeId, this.recipeName, this.photoUrl});
 
   Map<String, dynamic> toMap() {
     return {
-      recipeName: this.recipeName,
-      photoUrl: this.photoUrl,
+      'name': this.recipeName,
+      'photoUrl': this.photoUrl,
     };
   }
 }
 
 class RecipeHelper {
   Database db;
+  Future init;
+
+  RecipeHelper() {
+    init = initDatabase();
+  }
 
   Future<void> initDatabase() async {
     db = await openDatabase(join(await getDatabasesPath(), "my_db.db"),
@@ -36,6 +41,7 @@ class RecipeHelper {
   }
 
   Future<void> insertRecipe(RecipeModel recipe) async {
+    await init;
     try{
       db.insert(tableName, recipe.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
     } catch(_) {
