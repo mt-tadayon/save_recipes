@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saverecipes/add_recipe_screen/add_recipe_screen.dart';
+import 'package:saverecipes/category_screen/category_screen.dart';
 import 'package:saverecipes/home_screen/category_card.dart';
 import 'package:saverecipes/home_screen/last_recipe_card.dart';
 import 'package:saverecipes/recipe_app_bar.dart';
@@ -61,6 +62,7 @@ class HomeScreen extends StatelessWidget {
                   CategoryCard(
                     color: Colors.amber,
                     categoryName: 'Noodel',
+                    categoryScreen: CategoryScreen('Noodel Recipies'),
                   ),
                   SizedBox(
                     width: 20.0,
@@ -68,7 +70,22 @@ class HomeScreen extends StatelessWidget {
                   CategoryCard(
                     color: Colors.deepOrange,
                     categoryName: 'Rice',
-                  )
+                    categoryScreen: CategoryScreen('Rice Recipies'),
+                  ), SizedBox(
+                    width: 20.0,
+                  ),
+                  CategoryCard(
+                    color: Colors.lightBlue,
+                    categoryName: 'Chicken',
+                    categoryScreen: CategoryScreen('Chicken Recipies'),
+                  ), SizedBox(
+                    width: 20.0,
+                  ),
+                  CategoryCard(
+                    color: Colors.teal,
+                    categoryName: 'Beef',
+                    categoryScreen: CategoryScreen('Beef Recipies'),
+                  ),
                 ],
               ),
             ),
