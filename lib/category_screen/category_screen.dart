@@ -16,7 +16,9 @@ class CategoryScreen extends StatelessWidget {
         },
       ),
       body: Column(
-        children: <Widget>[Text(categoryName)],
+        children: <Widget>[
+          Text(categoryName),
+        ],
       ),
     );
   }

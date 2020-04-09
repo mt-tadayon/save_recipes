@@ -23,14 +23,14 @@ class LastRecipeCard extends StatelessWidget {
               'EGG FRY',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 18.0,
+                  fontSize: 24.0,
                   fontWeight: FontWeight.bold),
             ),
             Row(
               children: <Widget>[
                 Text(
                   '10 min',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontSize: 20.0),
                 ),
                 Container(
                     height: 10.0,
@@ -40,7 +40,7 @@ class LastRecipeCard extends StatelessWidget {
                     )),
                 Text(
                   'Category',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontSize: 20.0),
                 ),
               ],
             )
