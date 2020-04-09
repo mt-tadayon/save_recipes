@@ -4,7 +4,7 @@ class CategoryCard extends StatelessWidget {
   final String categoryName;
   final Color color;
   final Widget categoryScreen;
-  
+
   const CategoryCard({
     Key key,
     this.categoryName,

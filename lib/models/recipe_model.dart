@@ -50,6 +50,7 @@ class RecipeHelper {
   }
 
   Future<List<RecipeModel>> getAllRecipes () async {
+    await init;
     final List<Map<String, dynamic>> recipes = await db.query(tableName);
 
     return List.generate(recipes.length, (i){
