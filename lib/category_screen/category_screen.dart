@@ -42,12 +42,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
           )
         ],
       ),
-      /*appBar: RecipeAppBar(
-        firstIcon: Icon(Icons.home),
-        firstOnTap: () {
-          Navigator.pop(context);
-        },
-      ),*/
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -72,18 +66,25 @@ class _CategoryScreenState extends State<CategoryScreen> {
             Expanded(
               child: ListView.builder(
                 itemCount: recipes.length,
-                itemBuilder: (BuildContext context, int index) => Stack(
-                  children: <Widget>[
-                    Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(recipes[index].photoUrl),
-                              fit: BoxFit.cover)),
-                      child: Text(recipes[index].recipeName),
-                    )
-                  ],
+                itemBuilder: (BuildContext context, int index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    elevation: 10.0,
+                    child: Column(
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(recipes[index].recipeName),
+                          leading: Image(
+                            image: AssetImage(recipes[index].photoUrl),
+                            fit: BoxFit.fitHeight,
+                          ),
+                          onTap: () {
+                            print('Hello new recipe');
+                          },
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             )
