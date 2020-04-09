@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Save Recipies',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.white
       ),
       home: HomeScreen(),
     );

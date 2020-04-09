@@ -22,15 +22,20 @@ class _CategoryScreenState extends State<CategoryScreen> {
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add_circle),
+            icon: Icon(
+              Icons.add_circle,
+              color: Colors.grey,
+            ),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => AddRecipeScreen()
-              ));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddRecipeScreen()));
             },
           ),
           IconButton(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              color: Colors.grey,
+            ),
             onPressed: () {
               Navigator.popUntil(context, (route) => route.isFirst);
             },
@@ -67,20 +72,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
             Expanded(
               child: ListView.builder(
                 itemCount: recipes.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    Stack(
-                      children: <Widget>[
-                        Container(
-                          width: 200,
-                          height: 200,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(recipes[index].photoUrl),
-                                  fit: BoxFit.cover)),
-                          child: Text(recipes[index].recipeName),
-                        )
-                      ],
-                    ),
+                itemBuilder: (BuildContext context, int index) => Stack(
+                  children: <Widget>[
+                    Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(recipes[index].photoUrl),
+                              fit: BoxFit.cover)),
+                      child: Text(recipes[index].recipeName),
+                    )
+                  ],
+                ),
               ),
             )
           ],

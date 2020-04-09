@@ -11,7 +11,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add_circle),
+            tooltip: 'Add new Recipe',
+            icon: Icon(
+              Icons.add_circle,
+              color: Colors.grey,
+            ),
             onPressed: () {
               Navigator.push(
                 context,

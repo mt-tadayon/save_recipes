@@ -15,7 +15,6 @@ class AddRecipeScreen extends StatefulWidget {
 }
 
 class _AddRecipeScreenState extends State<AddRecipeScreen> {
-
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     currentRecipe.photoUrl = image.path;
@@ -31,8 +30,11 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.home),
-            onPressed: (){
+            icon: Icon(
+              Icons.home,
+              color: Colors.grey,
+            ),
+            onPressed: () {
               Navigator.popUntil(context, (route) => route.isFirst);
             },
           )
@@ -68,9 +70,9 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                   style: TextStyle(fontSize: 16.0),
                 ),
                 IconButton(
-                    color: Colors.grey,
-                    icon: Icon(Icons.camera_alt),
-                    onPressed: getImage,
+                  color: Colors.grey,
+                  icon: Icon(Icons.camera_alt),
+                  onPressed: getImage,
                 ),
               ],
             ),
