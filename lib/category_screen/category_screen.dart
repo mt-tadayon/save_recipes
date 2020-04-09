@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:saverecipes/add_recipe_screen/add_recipe_screen.dart';
 import 'package:saverecipes/models/recipe_model.dart';
+import 'package:saverecipes/recipe_screen/recipe_screen.dart';
 
 final RecipeHelper _recipeHelper = RecipeHelper();
 
 class CategoryScreen extends StatefulWidget {
   final String categoryName;
-
   CategoryScreen(this.categoryName);
 
   @override
@@ -15,6 +15,18 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   List<RecipeModel> recipes = [];
+
+  Future<void> getRecipes () async {
+    recipes = await _recipeHelper.getAllRecipes();
+    setState(() {
+    });
+  }
+
+  @override
+  void initState() {
+    getRecipes();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,16 +65,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            FlatButton(
-              onPressed: () async {
-                List<RecipeModel> list = await _recipeHelper.getAllRecipes();
-
-                setState(() {
-                  recipes = list;
-                });
-              },
-              child: Text('Get recipes'),
-            ),
             Expanded(
               child: ListView.builder(
                 itemCount: recipes.length,
@@ -74,12 +76,23 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       children: <Widget>[
                         ListTile(
                           title: Text(recipes[index].recipeName),
-                          leading: Image(
-                            image: AssetImage(recipes[index].photoUrl),
-                            fit: BoxFit.fitHeight,
+                          leading: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Image(
+                              image: AssetImage(recipes[index].photoUrl),
+                              fit: BoxFit.fitHeight,
+                            ),
                           ),
                           onTap: () {
-                            print('Hello new recipe');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RecipeScreen(
+                                  name: recipes[index].recipeName,
+                                  imageUrl: recipes[index].photoUrl,
+                                ),
+                              ),
+                            );
                           },
                         )
                       ],
