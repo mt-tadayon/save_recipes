@@ -3,22 +3,25 @@ import 'package:saverecipes/add_recipe_screen/add_recipe_screen.dart';
 import 'package:saverecipes/category_screen/category_screen.dart';
 import 'package:saverecipes/home_screen/category_card.dart';
 import 'package:saverecipes/home_screen/last_recipe_card.dart';
-import 'package:saverecipes/recipe_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: RecipeAppBar(
-        icon: Icon(Icons.add_circle),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddRecipeScreen(),
-            ),
-          );
-        },
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add_circle),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => AddRecipeScreen(),
+                ),
+              );
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -71,14 +74,16 @@ class HomeScreen extends StatelessWidget {
                     color: Colors.deepOrange,
                     categoryName: 'Rice',
                     categoryScreen: CategoryScreen('Rice Recipies'),
-                  ), SizedBox(
+                  ),
+                  SizedBox(
                     width: 20.0,
                   ),
                   CategoryCard(
                     color: Colors.lightBlue,
                     categoryName: 'Chicken',
                     categoryScreen: CategoryScreen('Chicken Recipies'),
-                  ), SizedBox(
+                  ),
+                  SizedBox(
                     width: 20.0,
                   ),
                   CategoryCard(

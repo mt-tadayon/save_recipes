@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:saverecipes/add_recipe_screen/add_recipe_screen.dart';
 import 'package:saverecipes/models/recipe_model.dart';
-import 'package:saverecipes/recipe_app_bar.dart';
 
 final RecipeHelper _recipeHelper = RecipeHelper();
 
@@ -19,12 +19,30 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: RecipeAppBar(
-        icon: Icon(Icons.home),
-        onTap: () {
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add_circle),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => AddRecipeScreen()
+              ));
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+            },
+          )
+        ],
+      ),
+      /*appBar: RecipeAppBar(
+        firstIcon: Icon(Icons.home),
+        firstOnTap: () {
           Navigator.pop(context);
         },
-      ),
+      ),*/
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(

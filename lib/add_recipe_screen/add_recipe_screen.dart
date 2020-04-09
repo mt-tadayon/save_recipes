@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:saverecipes/models/recipe_model.dart';
-import 'package:saverecipes/recipe_app_bar.dart';
 
 RecipeModel currentRecipe = RecipeModel();
 final RecipeHelper _recipeHelper = RecipeHelper();
@@ -29,11 +28,15 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: RecipeAppBar(
-        icon: Icon(Icons.home),
-        onTap: () {
-          Navigator.pop(context);
-        },
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.home),
+            onPressed: (){
+              Navigator.popUntil(context, (route) => route.isFirst);
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
