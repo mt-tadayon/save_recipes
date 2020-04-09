@@ -4,24 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:saverecipes/models/recipe_model.dart';
 
-RecipeModel currentRecipe = RecipeModel();
-final RecipeHelper _recipeHelper = RecipeHelper();
-final _controller = TextEditingController();
-File _image;
-
 class AddRecipeScreen extends StatefulWidget {
   @override
   _AddRecipeScreenState createState() => _AddRecipeScreenState();
 }
 
 class _AddRecipeScreenState extends State<AddRecipeScreen> {
+  RecipeModel currentRecipe = RecipeModel();
+  final RecipeHelper _recipeHelper = RecipeHelper();
+  final _controller = TextEditingController();
+  File _image;
+
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     currentRecipe.photoUrl = image.path;
-
     setState(() {
       _image = image;
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
