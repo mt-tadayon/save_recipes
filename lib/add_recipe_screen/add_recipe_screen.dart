@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:saverecipes/models/recipe_model.dart';
+import 'package:saverecipes/services/recipe_service.dart';
 
 class AddRecipeScreen extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class AddRecipeScreen extends StatefulWidget {
 
 class _AddRecipeScreenState extends State<AddRecipeScreen> {
   RecipeModel currentRecipe = RecipeModel();
-  final RecipeHelper _recipeHelper = RecipeHelper();
+  final RecipeService _recipeService = RecipeService();
   final _controller = TextEditingController();
   File _image;
 
@@ -85,7 +86,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               child: Text('Save Recipe'),
               onPressed: () {
                 currentRecipe.recipeName = _controller.text;
-                _recipeHelper.insertRecipe(currentRecipe);
+                _recipeService.insertRecipe(currentRecipe);
                 Navigator.pop(context);
               },
             )

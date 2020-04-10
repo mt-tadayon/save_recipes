@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:saverecipes/add_recipe_screen/add_recipe_screen.dart';
 import 'package:saverecipes/models/recipe_model.dart';
 import 'package:saverecipes/recipe_screen/recipe_screen.dart';
+import 'package:saverecipes/services/recipe_service.dart';
 
-final RecipeHelper _recipeHelper = RecipeHelper();
+final RecipeService _recipeService = RecipeService();
 
 class CategoryScreen extends StatefulWidget {
   final String categoryName;
@@ -17,7 +18,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   List<RecipeModel> recipes = [];
 
   Future<void> getRecipes () async {
-    recipes = await _recipeHelper.getAllRecipes();
+    recipes = await _recipeService.getAllRecipes();
     setState(() {
     });
   }
