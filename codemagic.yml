@@ -40,5 +40,5 @@ workflows:
         recipients:
           - mt.tadayon@gmail.com
       slack:
-        channel: #dev
+        channel: #general
         notify_on_build: true
