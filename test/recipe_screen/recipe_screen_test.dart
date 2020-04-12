@@ -16,7 +16,6 @@ void main() {
       ),
     );
 
-    // Create the Finder
     final nameFinder = find.text('name');
     expect(nameFinder, findsOneWidget);
     expect(find.byType(ListView), findsOneWidget);
@@ -24,7 +23,7 @@ void main() {
 
   group('Great Function: ', () {
     test('should do something important', () {
-      expect(true, isTrue, reason: "This methos was not a great function.");
+      expect(true, isFalse, reason: "This methos was not a great function.");
     });
 
     test("should do something more important", () {
