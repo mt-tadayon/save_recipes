@@ -1,9 +1,29 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:saverecipes/recipe_screen/recipe_screen.dart';
 
 void main() {
+  testWidgets('RecipeScreen Widgte',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: RecipeScreen(
+          name: 'name',
+          imageFile: File("imageFile.png"),
+        ),
+      ),
+    );
+
+    final nameFinder = find.text('name');
+    expect(nameFinder, findsOneWidget);
+    expect(find.byType(ListView), findsOneWidget);
+  });
+
   group('Great Function: ', () {
     test('should do something important', () {
-      expect(true, isTrue, reason: "This methos was not a great function.");
+      expect(true, isFalse, reason: "This methos was not a great function.");
     });
 
     test("should do something more important", () {

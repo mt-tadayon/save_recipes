@@ -1,10 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class RecipeScreen extends StatelessWidget {
-  final String imageUrl;
+  final File imageFile;
   final String name;
 
-  RecipeScreen({this.imageUrl, this.name});
+  RecipeScreen({this.imageFile, this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class RecipeScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Image(
-            image: AssetImage(imageUrl),
+            image: FileImage(imageFile, scale: 1.0),
           ),
         ],
       ),
