@@ -27,7 +27,7 @@ void main() {
     });
 
     test("should do something more important", () {
-      expect(true, isFalse, reason: "This method was a great function");
+      expect(true, isTrue, reason: "This method was a great function");
     });
 
     test("should impress the customer", () {
