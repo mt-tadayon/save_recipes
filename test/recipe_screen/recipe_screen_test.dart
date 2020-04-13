@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:saverecipes/recipe_screen/recipe_screen.dart';
 
 void main() {
-  testWidgets('RecipeScreen',
+  testWidgets('RecipeScreen Widgte',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -16,7 +16,6 @@ void main() {
       ),
     );
 
-    // Create the Finder
     final nameFinder = find.text('name');
     expect(nameFinder, findsOneWidget);
     expect(find.byType(ListView), findsOneWidget);
@@ -24,7 +23,7 @@ void main() {
 
   group('Great Function: ', () {
     test('should do something important', () {
-      expect(true, isTrue, reason: "This method was a good function.");
+      expect(true, isFalse, reason: "This method was a good function.");
     });
 
     test("should do something more important", () {
