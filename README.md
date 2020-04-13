@@ -1,3 +1,5 @@
+[![Codemagic build status](https://api.codemagic.io/apps/5e9011961838ac053a7f70db/5e9011961838ac053a7f70da/status_badge.svg)](https://codemagic.io/apps/5e9011961838ac053a7f70db/5e9011961838ac053a7f70da/latest_build)
+
 # saverecipes
 
 A new Flutter application to save cooking recipes
