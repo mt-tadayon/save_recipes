@@ -7,6 +7,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return
+    return MaterialApp(
+      title: 'Save Recipies',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        primaryColor: Colors.white
+      ),
+      home: HomeScreen(),
+    );
   }
 }
