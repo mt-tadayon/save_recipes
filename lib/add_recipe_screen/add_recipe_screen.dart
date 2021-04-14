@@ -17,10 +17,10 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   File _image;
 
   Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image = await ImagePicker().getImage(source: ImageSource.gallery);
     currentRecipe.photoUrl = image.path;
     setState(() {
-      _image = image;
+      _image = File(image.path);
     });
   }
 
@@ -82,7 +82,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 ),
               ],
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Save Recipe'),
               onPressed: () {
                 currentRecipe.recipeName = _controller.text;
