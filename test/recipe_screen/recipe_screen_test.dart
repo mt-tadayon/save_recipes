@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:saverecipes/recipe_screen/recipe_screen.dart';
+import 'package:saverecipes/feature/recipe_screen/recipe_screen.dart';
 
 void main() {
-  testWidgets('RecipeScreen Widgte',
-      (WidgetTester tester) async {
+  testWidgets('RecipeScreen Widget', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: RecipeScreen(
@@ -33,6 +32,5 @@ void main() {
     test("should impress the customer", () {
       expect(true, isTrue, reason: "It really should impress the customer");
     });
-
   });
 }

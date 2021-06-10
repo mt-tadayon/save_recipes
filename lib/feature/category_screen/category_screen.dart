@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:saverecipes/add_recipe_screen/add_recipe_screen.dart';
-import 'package:saverecipes/models/recipe_model.dart';
-import 'package:saverecipes/recipe_screen/recipe_screen.dart';
-import 'package:saverecipes/services/recipe_service.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:saverecipes/feature/add_recipe_screen/add_recipe_screen.dart';
+import 'package:saverecipes/feature/recipe_screen/recipe_screen.dart';
+import 'package:saverecipes/layer/models/recipe_model.dart';
+import 'package:saverecipes/main.dart';
 
-final RecipeService _recipeService = RecipeService();
+const recipeBox = 'recipeBox';
 
 class CategoryScreen extends StatefulWidget {
   final String categoryName;
@@ -18,16 +20,11 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  List<RecipeModel> recipes = [];
-
-  Future<void> getRecipes() async {
-    recipes = await _recipeService.getAllRecipes();
-    setState(() {});
-  }
+  Box<RecipeModel> recipeBox;
 
   @override
   void initState() {
-    getRecipes();
+    recipeBox = Hive.box<RecipeModel>(recipeBoxName);
     super.initState();
   }
 
@@ -69,21 +66,23 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: recipes.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    Padding(
+              child: ValueListenableBuilder(
+                valueListenable: recipeBox.listenable(),
+                builder: (_, box, __) {
+                  return ListView.builder(
+                    itemCount: box.length,
+                    itemBuilder: (BuildContext context, int index) => Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
                         elevation: 10.0,
                         child: Column(
                           children: <Widget>[
                             ListTile(
-                              title: Text(recipes[index].recipeName),
+                              title: Text(box[index].recipeName),
                               leading: Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: Image(
-                                  image: AssetImage(recipes[index].photoUrl),
+                                  image: AssetImage(box[index].recipeImageUrl),
                                   fit: BoxFit.fitHeight,
                                 ),
                               ),
@@ -92,12 +91,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      print(
-                                          recipes[index].photoUrl);
+                                      print(box[index].recipeImageUrl);
                                       return RecipeScreen(
-                                        name: recipes[index].recipeName,
-                                        imageFile: File(
-                                            recipes[index].photoUrl),
+                                        name: box[index].recipeName,
+                                        imageFile:
+                                            File(box[index].recipeImageUrl),
                                       );
                                     },
                                   ),
@@ -108,6 +106,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         ),
                       ),
                     ),
+                  );
+                },
               ),
             )
           ],

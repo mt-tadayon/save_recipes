@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:saverecipes/add_recipe_screen/add_recipe_screen.dart';
-import 'package:saverecipes/category_screen/category_screen.dart';
-import 'package:saverecipes/home_screen/category_card.dart';
-import 'package:saverecipes/home_screen/last_recipe_card.dart';
+import 'package:saverecipes/feature/add_recipe_screen/add_recipe_screen.dart';
+import 'package:saverecipes/feature/category_screen/category_screen.dart';
+import 'package:saverecipes/feature/home_screen/last_recipe_card.dart';
+
+import 'category_card.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:saverecipes/models/recipe_model.dart';
-import 'package:saverecipes/services/recipe_service.dart';
+import 'package:saverecipes/layer/data/service/hive_db.dart';
+import 'package:saverecipes/layer/models/recipe_model.dart';
 
 class AddRecipeScreen extends StatefulWidget {
   @override
@@ -11,14 +11,14 @@ class AddRecipeScreen extends StatefulWidget {
 }
 
 class _AddRecipeScreenState extends State<AddRecipeScreen> {
+  final HiveDB _db = HiveDB();
   RecipeModel currentRecipe = RecipeModel();
-  final RecipeService _recipeService = RecipeService();
   final _controller = TextEditingController();
   File _image;
 
   Future getImage() async {
     var image = await ImagePicker().getImage(source: ImageSource.gallery);
-    currentRecipe.photoUrl = image.path;
+    currentRecipe.recipeImageUrl = image.path;
     setState(() {
       _image = File(image.path);
     });
@@ -86,7 +86,9 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               child: Text('Save Recipe'),
               onPressed: () {
                 currentRecipe.recipeName = _controller.text;
-                _recipeService.insertRecipe(currentRecipe);
+                _db.addRecipe(currentRecipe);
+                print('>>> ${currentRecipe.recipeName}');
+                print('>>> ${currentRecipe.recipeImageUrl}');
                 Navigator.pop(context);
               },
             )
