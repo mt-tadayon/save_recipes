@@ -73,37 +73,30 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     itemCount: box.values.length,
                     itemBuilder: (BuildContext context, int index) {
                       List<RecipeModel> recipe = box.values.toList();
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          elevation: 10.0,
-                          child: Column(
-                            children: <Widget>[
-                              ListTile(
-                                title: Text(recipe[index].recipeName),
-                                leading: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Image.file(
-                                      File(recipe[index].recipeImageUrl)),
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        print(recipe[index].recipeImageUrl);
-                                        return RecipeScreen(
-                                          name: recipe[index].recipeName,
-                                          imageFile: File(
-                                              recipe[index].recipeImageUrl),
-                                        );
-                                      },
-                                    ),
+                      return Card(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        elevation: 10.0,
+                        child: ListTile(
+                          title: Text(recipe[index].recipeName),
+                          leading: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child:
+                                Image.file(File(recipe[index].recipeImageUrl)),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return RecipeScreen(
+                                    name: recipe[index].recipeName,
+                                    imageFile:
+                                        File(recipe[index].recipeImageUrl),
                                   );
                                 },
-                              )
-                            ],
-                          ),
+                              ),
+                            );
+                          },
                         ),
                       );
                     },
