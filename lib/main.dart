@@ -11,8 +11,8 @@ const recipeBoxName = 'recipeBoxName';
 Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox<RecipeModel>(recipeBoxName);
-  Hive.registerAdapter(RecipeModelAdapter());
-  Hive.registerAdapter(CategoryModelAdapter());
+  Hive.registerAdapter<RecipeModel>(RecipeModelAdapter());
+  Hive.registerAdapter<CategoryModel>(CategoryModelAdapter());
   runApp(MyApp());
 }
 
