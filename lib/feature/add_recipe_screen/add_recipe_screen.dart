@@ -87,8 +87,6 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               onPressed: () {
                 currentRecipe.recipeName = _controller.text;
                 _db.addRecipe(currentRecipe);
-                print('>>> ${currentRecipe.recipeName}');
-                print('>>> ${currentRecipe.recipeImageUrl}');
                 Navigator.pop(context);
               },
             )

@@ -68,44 +68,45 @@ class _CategoryScreenState extends State<CategoryScreen> {
             Expanded(
               child: ValueListenableBuilder(
                 valueListenable: recipeBox.listenable(),
-                builder: (_, box, __) {
+                builder: (_, Box<RecipeModel> box, __) {
                   return ListView.builder(
-                    itemCount: box.length,
-                    itemBuilder: (BuildContext context, int index) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        elevation: 10.0,
-                        child: Column(
-                          children: <Widget>[
-                            ListTile(
-                              title: Text(box[index].recipeName),
-                              leading: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Image(
-                                  image: AssetImage(box[index].recipeImageUrl),
-                                  fit: BoxFit.fitHeight,
+                    itemCount: box.values.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      List<RecipeModel> recipe = box.values.toList();
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 10.0,
+                          child: Column(
+                            children: <Widget>[
+                              ListTile(
+                                title: Text(recipe[index].recipeName),
+                                leading: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Image.file(
+                                      File(recipe[index].recipeImageUrl)),
                                 ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      print(box[index].recipeImageUrl);
-                                      return RecipeScreen(
-                                        name: box[index].recipeName,
-                                        imageFile:
-                                            File(box[index].recipeImageUrl),
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
-                            )
-                          ],
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        print(recipe[index].recipeImageUrl);
+                                        return RecipeScreen(
+                                          name: recipe[index].recipeName,
+                                          imageFile: File(
+                                              recipe[index].recipeImageUrl),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
               ),
