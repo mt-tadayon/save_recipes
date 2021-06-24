@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:saverecipes/layer/data/category_data.dart';
 import 'package:saverecipes/layer/data/service/hive_db.dart';
 import 'package:saverecipes/layer/models/recipe_model.dart';
 
@@ -15,6 +16,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   RecipeModel currentRecipe = RecipeModel();
   final _controller = TextEditingController();
   File _image;
+  String selectedCategory;
 
   Future getImage() async {
     var image = await ImagePicker().getImage(source: ImageSource.gallery);
@@ -60,6 +62,21 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               ),
               controller: _controller,
             ),
+            DropdownButtonFormField(
+              items: getCategoryList()
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem(
+                  child: Text(value),
+                  value: value,
+                );
+              }).toList(),
+              value: selectedCategory,
+              onChanged: (value) {
+                setState(() {
+                  selectedCategory = value;
+                });
+              },
+            ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Center(
@@ -95,4 +112,12 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
       ),
     );
   }
+}
+
+List<String> getCategoryList() {
+  final List<String> categories = [];
+  for (var category in CategoryName.values) {
+    categories.add(category.getCategoryString());
+  }
+  return categories;
 }

@@ -1,14 +1,16 @@
-enum CategoryName { noodel, chicken, rice }
+enum CategoryName { noodel, chicken, rice, beef }
 
 extension CategoryNameExtension on CategoryName {
   String getCategoryString() {
     switch (this) {
       case CategoryName.noodel:
-        return 'noodle';
+        return 'Noodle';
       case CategoryName.chicken:
-        return 'chicken';
+        return 'Chicken';
       case CategoryName.rice:
-        return 'rice';
+        return 'Rice';
+      case CategoryName.beef:
+        return 'Beef';
       default:
         return '';
     }

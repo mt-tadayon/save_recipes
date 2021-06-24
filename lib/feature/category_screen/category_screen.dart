@@ -59,7 +59,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         child: Column(
           children: <Widget>[
             Text(
-              widget.categoryName,
+              '${widget.categoryName} Recipes',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,

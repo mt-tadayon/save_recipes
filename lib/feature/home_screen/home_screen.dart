@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:saverecipes/feature/add_recipe_screen/add_recipe_screen.dart';
 import 'package:saverecipes/feature/category_screen/category_screen.dart';
 import 'package:saverecipes/feature/home_screen/last_recipe_card.dart';
+import 'package:saverecipes/layer/data/category_data.dart';
 
 import 'category_card.dart';
 
 class HomeScreen extends StatelessWidget {
+  final noodleString = CategoryName.noodel.getCategoryString();
+  final riceString = CategoryName.rice.getCategoryString();
+  final chickenString = CategoryName.chicken.getCategoryString();
+  final beefString = CategoryName.beef.getCategoryString();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,32 +74,32 @@ class HomeScreen extends StatelessWidget {
                 children: <Widget>[
                   CategoryCard(
                     color: Colors.amber,
-                    categoryName: 'Noodel',
-                    categoryScreen: CategoryScreen('Noodel Recipies'),
+                    categoryName: noodleString,
+                    categoryScreen: CategoryScreen(noodleString),
                   ),
                   SizedBox(
                     width: 20.0,
                   ),
                   CategoryCard(
                     color: Colors.deepOrange,
-                    categoryName: 'Rice',
-                    categoryScreen: CategoryScreen('Rice Recipies'),
+                    categoryName: riceString,
+                    categoryScreen: CategoryScreen(riceString),
                   ),
                   SizedBox(
                     width: 20.0,
                   ),
                   CategoryCard(
                     color: Colors.lightBlue,
-                    categoryName: 'Chicken',
-                    categoryScreen: CategoryScreen('Chicken Recipies'),
+                    categoryName: chickenString,
+                    categoryScreen: CategoryScreen(chickenString),
                   ),
                   SizedBox(
                     width: 20.0,
                   ),
                   CategoryCard(
                     color: Colors.teal,
-                    categoryName: 'Beef',
-                    categoryScreen: CategoryScreen('Beef Recipies'),
+                    categoryName: beefString,
+                    categoryScreen: CategoryScreen(beefString),
                   ),
                 ],
               ),
