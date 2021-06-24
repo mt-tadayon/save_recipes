@@ -6,7 +6,7 @@ class HiveDB {
   var box = Hive.box<RecipeModel>(recipeBoxName);
 
   Future<void> addRecipe(RecipeModel recipeModel) async {
-    await box.put('recipe', recipeModel);
+    await box.add(recipeModel);
   }
 
   RecipeModel getRecipe() {
